@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom'
 class Search extends Component {
     state = {
         query: "",
-        searched: []
+        searched: [],
+        error: ""
     }
 
   search(query) {
@@ -19,6 +20,7 @@ class Search extends Component {
             .then((books) => {
               if (Array.isArray(books)) {
                 this.setState(() => ({
+                  error: "",
                   searched: books.map((book) => {
                       let matching = this.props.books.filter((existing) => (book.id === existing.id))
                       if (matching.length === 0) {
@@ -32,7 +34,7 @@ class Search extends Component {
                 }))
               }
               else {
-                 this.setState({searched: []})
+                 this.setState({searched: [], error: "Books Not Found"})
               }
             })
      }
@@ -70,9 +72,9 @@ class Search extends Component {
             </div>
             <div className="search-books-results">
               {
-                  this.state.serched.length === 0 && (
+                  this.state.error && (
                       <div className="error">
-                        Books not found
+                        {this.state.error}
                       </div>
                   )
               }

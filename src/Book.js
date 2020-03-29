@@ -20,7 +20,7 @@ class Book extends Component {
               <div className="book">
                 <div className="book-top">
                   {
-                      book.imageLinks.thumbnail && (
+                      book.imageLinks && book.imageLinks.thumbnail && (
                           <div
                             className="book-cover"
                             style={{
@@ -31,7 +31,7 @@ class Book extends Component {
                       )
                   }
                   {
-                      !book.imageLinks.thumbnail &&(
+                      (!book.imageLinks || !book.imageLinks.thumbnail) &&(
                           <div
                             className="book-cover"
                             style={{
@@ -56,7 +56,7 @@ class Book extends Component {
                     Title: {book.title}
                   </div>
                   <div className="book-author">
-                    Author: {book.authors.join(", ")}
+                    Author: {book.authors ? book.authors.join(", ") : "Unknown"}
                   </div>
                 </div>
             </li>
