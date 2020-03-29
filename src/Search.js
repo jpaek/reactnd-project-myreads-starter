@@ -20,8 +20,12 @@ class Search extends Component {
               if (Array.isArray(books)) {
                 this.setState(() => ({
                   searched: books.map((book) => {
-                      if (this.props.books.filter((existing) => (book.id === existing.id)).length === 0) {
-                          book.shelf = "none";
+                      let matching = this.props.books.filter((existing) => (book.id === existing.id))
+                      if (matching.length === 0) {
+                          book.shelf = "none"
+                      }
+                      else {
+                          book.shelf = matching[0].shelf
                       }
                       return book;
                   })
@@ -65,6 +69,13 @@ class Search extends Component {
               </div>
             </div>
             <div className="search-books-results">
+              {
+                  this.state.serched.length === 0 && (
+                      <div className="error">
+                        Books not found
+                      </div>
+                  )
+              }
               <ol className="books-grid">
               {
                   this.state.searched.map((book) => (
