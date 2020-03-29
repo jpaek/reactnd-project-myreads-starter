@@ -8,8 +8,6 @@ In Bookshelf, you can see the books on your shelf, categorized by "Want to Read,
 
 Clone the git repo and use npm to install the dependency and start the server
 
-```shell
-git clone https://github.com/jpaek/reactnd-project-myreads-starter.git
-npm install
-npm start
-```
+$ git clone https://github.com/jpaek/reactnd-project-myreads-starter.git
+$ npm install
+$ npm start
